@@ -1,17 +1,18 @@
 import collections
 import random
 import sys
-import ballot
-from ballot import Ballot
+from .ballot import Ballot
 
 class Election:
-    def __init__(self, file_name):
-        election_info = self.read_election_info(file_name)
+    def __init__(self):
         self.votes = collections.Counter()
         self.ballots = {}
+
+    def initialize_election(file_name):
+        election_info = self.read_election_info(file_name)
         for ballot_info in election_info:
-            ballot = Ballot(ballot_info.split())
-            self.register_ballot(ballot)
+            new_ballot = Ballot(ballot_info.split())
+            self.register_ballot(new_ballot)
 
     def run_election(self):
         while True:
@@ -29,11 +30,10 @@ class Election:
                 self.ballots[candidate] = [ballot]
 
     def read_election_info(self, file_name):
-        election_info = []
         with open(file_name) as f:
-            for ballot in f:
-                election_info.append(ballot)
-        return election_info
+            first_line = f.read_line()
+            election_info = f.readlines()
+            return election_info
 
     def run_election_round(self):
         print("Current state: " + str(self.votes))

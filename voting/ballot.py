@@ -1,10 +1,13 @@
 class Ballot:
-    def __init__(self, candidates):
+    def __init__(self, candidates = []):
         self.candidates = candidates
         self.candidates.reverse()
 
     def candidate(self):
-        return self.candidates[-1]
+        if self.isexhausted():
+            return None
+        else:
+            return self.candidates[-1]
 
     def failover(self):
             self.candidates.pop()
