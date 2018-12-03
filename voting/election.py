@@ -1,4 +1,5 @@
 import collections
+import argparse
 import random
 import sys
 from .ballot import Ballot
@@ -66,9 +67,11 @@ class Election:
         return random.choice(tuple(least_popular_candidates))
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python3 election.py path_to_file")
-    else:
-        file_path = sys.argv[1]
-        elect = Election(file_path)
-        winner = elect.run_election()
+    usage = "usage: %prog [options] ballot_file"
+    parser = argparse.ArgumentParser()
+    parser.add_argument('file', required=True)
+    parser.add_argument('-m' '--method', choices=['irv', 'fptp'])
+    parsed_args = parser.parse_args()
+    elect = election.Election()
+    elect.initialize_election(parsed_args['file']) 
+    elect.run_election()
