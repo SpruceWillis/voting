@@ -14,3 +14,6 @@ class Ballot:
 
     def isexhausted(self):
         return len(self.candidates) < 1
+
+    def __repr__(self):
+        return ("ballot: " + str(self.candidates))
