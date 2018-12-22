@@ -1,10 +1,10 @@
-from .ballot import Ballot
-from .abstract_election import AbstractElection
+from ballot import Ballot
+from abstract_election import AbstractElection
 
 class InstantRunoffVoting(AbstractElection):
     # TODO: take the election as a parameter and use that one's methods. Also don't be an abstract class. Makes a lot more sense
     @classmethod
-    def run_election_round(cls, ballots, votes)
+    def run_election_round(cls, ballots, votes):
         print("Current state: " + str(votes))
         total_num_votes = sum(votes.values())
         num_votes_required = total_num_votes/2 + 1 # odd numbers will round down, which is OK
@@ -16,7 +16,7 @@ class InstantRunoffVoting(AbstractElection):
             cls.eliminate_least_popular_candidate(ballots, votes)
             return None
     @classmethod
-    def eliminate_least_popular_candidate(cls, ballots, votes)
+    def eliminate_least_popular_candidate(cls, ballots, votes):
         to_remove = cls.least_popular_candidate(votes)
         print("eliminating " + to_remove)
         ballots_to_remove = ballots[to_remove]
@@ -44,4 +44,3 @@ class InstantRunoffVoting(AbstractElection):
                 ballots[candidate].append(ballot)
             else:
                 ballots[candidate] = [ballot]
-

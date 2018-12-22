@@ -1,5 +1,5 @@
-from .abstract_election import AbstractElection
-from .ballot import Ballot
+from abstract_election import AbstractElection
+from ballot import Ballot
 
 class FirstPastThePost(AbstractElection):
     @staticmethod
