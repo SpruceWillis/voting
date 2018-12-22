@@ -1,6 +1,7 @@
 import abc
 from abc import ABC
 import collections
+import random
 
 class ElectoralSystem(ABC):
     # this method should run a single round of an election
