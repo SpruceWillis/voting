@@ -21,4 +21,5 @@ class InstantRunoffVoting(ElectoralSystem):
         ballots_to_remove = self.ballots[to_remove]
         self.remove_candidate(to_remove)
         for ballot in ballots_to_remove:
+            ballot.failover()
             self.register_ballot(ballot)
