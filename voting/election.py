@@ -21,6 +21,7 @@ class Election:
             winner = self.electoral_system.run_election_round()
             if winner is not None:
                 break
+        return winner
 
     def read_election_info(self, file_name):
         with open(file_name) as file:
@@ -47,4 +48,4 @@ if __name__ == "__main__":
     parsed_args = parser.parse_args()
     elect = Election(parsed_args.method)
     elect.initialize_election(parsed_args.file)
-    elect.run_election()
+    print(elect.run_election())

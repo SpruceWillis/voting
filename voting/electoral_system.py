@@ -22,7 +22,7 @@ class ElectoralSystem(ABC):
     # TODO: implement different ways of choosing if there are ties
     def least_popular_candidate(self):
         least_popular_candidates = self.least_popular_candidates()
-        return random.choice(tuple(least_popular_candidates))
+        return self.tiebreak(least_popular_candidates)
 
     # find the least popular candidate(s) and randomly select one
     def least_popular_candidates(self):
@@ -39,6 +39,10 @@ class ElectoralSystem(ABC):
     def remove_candidate(self, candidate):
         del self.ballots[candidate]
         del self.votes[candidate]
+
+    # this is intended to randomly select an element from a set of candidates
+    def tiebreak(self, candidates):
+        return random.choice(tuple(candidates))
 
     @abc.abstractmethod
     def run_election_round(self):
