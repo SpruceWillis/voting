@@ -1,12 +1,11 @@
-from abstract_election import AbstractElection
+from electoral_system import ElectoralSystem
 from ballot import Ballot
 
-class FirstPastThePost(AbstractElection):
-    @staticmethod
-    def run_election_round(ballots, votes):
-        if len(votes) > 0:
-            num_votes_max = votes.most_common(1)[0]
-            victors = {k for (k,v) in votes.items() if v == num_votes}
+class FirstPastThePost(ElectoralSystem):
+    def run_election_round(self):
+        if len(self.votes) > 0:
+            num_votes_max = self.votes.most_common(1)[0][1]
+            victors = {k for (k,v) in self.votes.items() if v == num_votes_max}
             return victors
         else:
-            return []
+            return None

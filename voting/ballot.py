@@ -13,4 +13,4 @@ class Ballot:
             self.candidates.pop()
 
     def isexhausted(self):
-        return not self.candidates
+        return len(self.candidates) < 1
