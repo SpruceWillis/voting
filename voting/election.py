@@ -28,6 +28,7 @@ class Election:
             election_info = file.readlines()
             return election_info
 
+    # put here to avoid circular dependencies if put in electoral_system
     @staticmethod
     def create_electoral_system(system_type):
         try:
@@ -38,6 +39,7 @@ class Election:
             return type()
         except KeyError as err:
             print("invalid electoral system" + system_type)
+            raise err
 
 if __name__ == "__main__":
     usage = "usage: %prog [options] ballot_file"
